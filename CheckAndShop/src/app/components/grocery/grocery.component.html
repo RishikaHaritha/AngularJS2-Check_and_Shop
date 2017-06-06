@@ -1,0 +1,35 @@
+
+
+<div *ngIf="groceries">
+	<a [routerLink]= "['/groceries']">Go Back</a>
+	<br>
+	<h2 class = "page-header">{{id}}</h2>
+	<ul class = "list-group" *ngFor ="let grocery of groceries">
+		<li *ngIf = "(id == grocery.grocery)" class= " list-group-item">  company : {{grocery.company}} | Price : {{grocery.price}} | Brand : {{grocery.brand}}</li>
+		
+		<!-- <a class="btn btn-default" [routerLink]= "['/update-grocery/'+grocery.$key]">Update</a> -->		 
+	</ul>
+</div>
+<div>
+	<h2 class = "page-header">Reviews </h2>
+	<ul class = "list-group" *ngFor ="let review of reviews">
+		<li *ngIf = "(id == review.grocery)" class= " list-group-item">  {{review.user}} | Company :   {{review.company}}| Review :   {{review.review}} </li>
+		
+		<!-- <a class="btn btn-default" [routerLink]= "['/update-grocery/'+grocery.$key]">Update</a> -->		 
+	</ul>
+</div>
+<div>
+	<form (submit) = "onAddReview()">
+		<div class="form-group row">
+			<label for="example-text-input" class="col-sm-2 col-form-label">Company</label>
+		<div class="col-sm-4">
+			<input class="form-control" type="text" [(ngModel)]="company" name="company">
+		</div>
+		<label for="example-text-input" class="col-sm-2 col-form-label">Review</label>
+		<div class="col-sm-4">
+			<input class="form-control" type="textarea"[(ngModel)]="review" name="review">
+		</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Add Review</button>
+	</form>
+</div>
