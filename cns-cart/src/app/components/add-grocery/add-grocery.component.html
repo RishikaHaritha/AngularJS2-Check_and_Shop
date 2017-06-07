@@ -1,0 +1,29 @@
+<a [routerLink]= "['/groceries']">Go Back</a>
+
+<form (submit) = "onAddSubmit()">
+<div class="form-group row">
+		<label for="example-text-input" class="col-sm-2 col-form-label">Company Name</label>
+	<div class="col-sm-3">
+		<input id = "company" class="form-control" type="text" [(ngModel)]="company" name="company"  placeholder="{{id}}"  disabled />
+	</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-sm-2 col-form-label">Grocery</label>
+	<div class="col-sm-3">
+		<input class="form-control" type="text" [(ngModel)]="grocery" name="grocery"  required>
+	</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-sm-2 col-form-label">Price</label>
+	<div class="col-sm-3">
+		<input class="form-control" type="text" [(ngModel)]="price" name="price"  required>
+	</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-sm-2 col-form-label">Brand</label>
+	<div class="col-sm-3">
+		<input class="form-control" type="text" [(ngModel)]="brand" name="brand"  required>
+	</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
