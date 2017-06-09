@@ -1,0 +1,23 @@
+<a class="btn btn-primary btn-sm" [routerLink]= "['/groceries']"><i class="fa fa-arrow-circle-left"></i> Back</a>
+<div class="container">
+    <div class = "row">
+      <div class="col-sm-8 col-md-5 col-md-offset-3">
+
+        <div class = "well" align = "center center">
+         
+          <h2>UPDATE PRICE</h2>
+		  <br>
+            <form (submit) = "onEditSubmit()">
+				<div class="form-group row">
+				<div class="col-sm-12">
+					<label for="example-text-input" class="col-sm-7 col-form-label">Price per kg/dozen(<i class="fa fa-inr"></i>)</label><input class="form-control" type="text" [(ngModel)]="price" name="price" pattern = "^\d{0,9}$" required>
+					<br>
+					<button type="submit" class="btn btn-primary">Edit</button>
+				</div>
+				</div>
+              </form>
+         
+         </div>   
+      </div>
+  </div>
+</div>
