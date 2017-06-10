@@ -8,11 +8,8 @@ import { AngularFire} from 'angularfire2';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public af : AngularFire) { }
+	constructor(public af : AngularFire) { }
 
-  ngOnInit() {
-	  
-  }
- 
-
+	ngOnInit() {
+	}
 }

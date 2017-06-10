@@ -1,0 +1,31 @@
+<div>
+	<a class="btn btn-primary btn-sm" [routerLink]= "['/groceries']"><i class="fa fa-arrow-circle-left"></i> Back</a>
+	<br>	
+	<div class="row">
+		<div class="col-sm-4"><h2>My Wish List</h2></div>
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4"><a [routerLink]= "['/add-cart/'+email]" align="right-top" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-shopping-cart"></span> Go to Cart</a></div>
+	</div>
+	<div>
+		<table class = "table table-striped">
+			<tr>
+				<th>Grocery</th>
+				<th>Company</th>
+				<th>Brand</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th></th>
+				<th></th>
+			</tr>
+				<tr *ngFor ="let cart of customcarts">
+				<td *ngIf = "(email == cart.user)">{{cart.grocery}}</td>
+				<td *ngIf = "(email == cart.user)">{{cart.company}}</td>
+				<td *ngIf = "(email == cart.user)">{{cart.brand}}</td>
+				<td *ngIf = "(email == cart.user)">{{cart.quantity}}</td>
+				<td *ngIf = "(email == cart.user)"><div *ngFor ="let grocery of groceries"><p *ngIf = "(grocery.grocery == cart.grocery)&&(grocery.company == cart.company)&&(grocery.brand == cart.brand)"><i class="fa fa-inr"></i>{{grocery.price}}&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="addToCart(cart.company,email,grocery.price,cart.brand,cart.grocery,cart.quantity)" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"> Add </span></a></p></div></td>
+				<td *ngIf = "(email == cart.user)"><a (click)="onCustomDelete(cart.$key)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"> Remove</span></a></td>
+				<td *ngIf = "(email == cart.user)"><a (click)="updateQuantity(cart.$key)" class="btn btn-primary btn-sm"> Update Quantity</a></td>
+			</tr>
+		</table>		
+	</div>
+</div>

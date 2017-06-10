@@ -1,0 +1,40 @@
+<div>
+	<a class="btn btn-primary btn-sm" [routerLink]= "['/groceries']"><i class="fa fa-arrow-circle-left"></i> Back</a>
+	<br>
+	<h2>My Cart</h2>
+	
+	<div>
+		<table class = "table table-striped">
+		<tr>
+			<th>Grocery</th>
+			<th>Company</th>
+			<th>Brand</th>
+			<th>Price per kg/dozen</th>
+			<th>Quantity</th>
+			<th></th>
+		</tr>
+		<tr *ngFor ="let cart of carts">
+			<td *ngIf = "(email == cart.user)">{{cart.grocery}}</td>
+			<td *ngIf = "(email == cart.user)">{{cart.company}}</td>
+			<td *ngIf = "(email == cart.user)">{{cart.brand}}</td>	
+			<td *ngIf = "(email == cart.user)"><i class="fa fa-inr"></i> {{cart.price}}</td>
+			<td *ngIf = "(email == cart.user)">{{cart.quantity}}</td>
+			<td *ngIf = "(email == cart.user)"><a (click)="onDelete(cart.$key)" class="btn btn-default"><span class="glyphicon glyphicon-remove"> Remove</span></a></td>
+			<td *ngIf = "(email == cart.user)">{{totalBill(cart.quantity,cart.price)}}</td>
+		<tr>
+		</table> 
+		<h2><strong>Total : <i class="fa fa-inr"></i> {{sum}}.00</strong></h2>
+		
+		{{makeZero()}}
+		<div *ngFor ="let cart of carts">
+		   <h1 *ngIf = "(email == cart.user)">{{enableDelete(cart.$key)}}</h1>
+		</div>
+		<br>
+		<form (submit)="deleteAll()" class="col-sm-6">
+			<label for="address">Address:</label>
+			<textarea class="form-control" rows="4" cols="5" id="address" required></textarea>
+			<button type="submit" class = "btn btn-default cl-sm-3"><i class="fa fa-truck"></i> Place Order</button>
+		</form>
+		<br><br>		
+	</div>
+</div>

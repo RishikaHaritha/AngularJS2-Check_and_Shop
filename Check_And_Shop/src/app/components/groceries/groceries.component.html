@@ -1,0 +1,139 @@
+<ul class = "list-group" *ngFor ="let e of emails">	
+	<div class = "col-sm-10" *ngIf="(e.email == email)">
+		{{shows()}}
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+					<input  type="text" class="form-control" [(ngModel)] = "text" align = "left" id = "search"  placeholder="search">
+				</div>
+			</div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"><a [routerLink]="['/add-grocery/'+e.company]"><button  type = "button" class = "btn btn-primary btn-md pull-right">Add Grocery</button></a></div>
+		</div>
+		
+		<table align = "center" class = "table table-stripped">
+			<tr>
+				<th>Grocery</th>
+				<th>Brand</th>
+				<th>Price(Rs) per kg/dozen</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr *ngFor ="let grocery of groceries  | FilterPipe : text">
+				<td *ngIf="(e.company == grocery.company)">{{grocery.grocery}}</td>
+				<td *ngIf="(e.company == grocery.company)">{{grocery.brand}}</td>
+				<td *ngIf="(e.company == grocery.company)"><i class="fa fa-inr"></i>{{grocery.price}}</td>
+				<td *ngIf="(e.company == grocery.company)"><a [routerLink]= "['/update-grocery/'+grocery.$key]">Update <br></a></td>
+				<td *ngIf="(e.company == grocery.company)"><a  class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove" (click)="onDelete(grocery.$key)"> Remove</span></a></td>
+			</tr>
+		</table>
+		
+		<h2>Reviews </h2>
+		
+		<table align  = "center" class = "table table-stripped">
+			<tr>
+				<th>User</th>
+				<th>Grocery</th>
+				<th>Brand</th>
+				<th>Review</th>
+			</tr>
+		
+			<tr *ngFor ="let review of reviews">
+				<td *ngIf="(e.company == review.company)">{{review.user}}</td>
+				<td *ngIf="(e.company == review.company)">{{review.grocery}}</td>
+				<td *ngIf="(e.company == review.company)">{{review.brand}}</td>
+				<td *ngIf="(e.company == review.company)">{{review.review}} </td>
+			</tr>
+		</table>
+	</div>	
+</ul> 	
+<!--<div class = "col-sm-3"></div>
+	<div align = "center" *ngIf="(show == 0)">
+		<input type = "text" [(ngModel)] = "text" align = "center" id = "search" placeholder = "TYPE TO SEARCH">
+		<table  align = "center"class = "table table-striped">
+			<tr>
+				<th> Groceries</th>
+			</tr>
+			<tr *ngFor ="let grocery of groceries  | unique | FilterPipe : text"><a [routerLink]= "['/grocery/'+grocery.grocery]">{{grocery.grocery}}</a></tr>
+		</table>
+</div>-->
+<style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: white;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+</style>
+  
+<div class="container-fluid text-center" *ngIf="(show == 0)">    
+	<div class="row content">
+		<div class="col-sm-2">
+			<p><img class="img-rounded" src="assets/img/groceries5.jpeg" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/groceries.png" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/groceries1.png" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/groceries2.png" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/groceries3.png" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/groceries4.jpeg" alt="Lights" style="width:100%"></p>
+		</div>
+		<div class="col-sm-8 text-left"> 
+			<div align = "center" >
+				<div class="row">
+					<div class = "col-sm-4">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+							<input  type="text" class="form-control" [(ngModel)] = "text" align = "left" id = "search"  placeholder="search">
+						</div>
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-6">
+						<a [routerLink]= "['/custom-cart/'+email]" align="right-top" class="btn btn-primary btn-md"><i class="fa fa-heart-o"></i> My List</a>
+						<a [routerLink]= "['/add-cart/'+email]" align="right-top" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-shopping-cart"></span> Go to Cart</a>
+					</div>
+				</div>		
+				<table  align = "center"class = "table table-stripped">
+					<tr>
+						<th> Groceries</th>			
+					</tr>
+					<tr *ngFor ="let grocery of groceries  | unique | FilterPipe : text">
+						<td><a [routerLink]= "['/grocery/'+grocery.grocery]">{{grocery.grocery}}</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<p><img class="img-rounded" src="assets/img/offers.jpeg" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/dryfruits.jpeg" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/heritage.jpg" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/bigbazaar.jpg" alt="Lights" style="width:100%"></p>
+			<p><img class="img-rounded" src="assets/img/chocolates.jpg" alt="Lights" style="width:100%"></p> 
+			<p><img class="img-rounded" src="assets/img/vijetha.jpeg" alt="Lights" style="width:100%"></p>
+		</div>
+	</div>
+</div>

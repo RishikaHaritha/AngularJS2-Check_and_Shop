@@ -1,0 +1,68 @@
+<div *ngIf="groceries">
+	<a class="btn btn-primary btn-sm" [routerLink]= "['/groceries']"><i class="fa fa-arrow-circle-left"></i> Back</a>
+	<br>
+	<div class="row">
+		<div class="col-sm-4"><h2>{{id}}</h2></div>
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<a [routerLink]= "['/custom-cart/'+email]" align="right-top" class="btn btn-primary btn-md"><i class="fa fa-heart-o"></i> My List</a>
+			<a [routerLink]= "['/add-cart/'+email]" align="right-top" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-shopping-cart"></span> Go to Cart</a>
+		</div>
+	</div>
+	
+	<table align  = "center" class = "table table-stripped">
+		<tr>
+			<th>Company</th>
+			<th>Brand</th>
+			<th>Price per kg/dozen</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr *ngFor ="let grocery of groceries">
+			<td *ngIf = "(id == grocery.grocery)">{{grocery.company}}</td>
+			<td *ngIf = "(id == grocery.grocery)">{{grocery.brand}}</td>
+			<td *ngIf = "(id == grocery.grocery)"><i class="fa fa-inr"></i>{{grocery.price}}</td>
+			<td *ngIf = "(id == grocery.grocery)"><a (click) = "addToCart(grocery.company,email,grocery.price,grocery.brand,grocery.grocery)" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Add</a></td>
+			<td *ngIf = "(id == grocery.grocery)"><a (click) = "addCustom(grocery.company,email,grocery.brand,grocery.grocery)" class="btn btn-primary btn-sm"><i class="fa fa-heart-o"></i> Add to my list</a></td>
+		</tr>
+	</table>	
+</div>
+
+<div>
+	<h2 >Reviews </h2>
+	<table align = "center" class = "table table-stripped">
+		<tr>
+			<th>User</th>
+			<th>Company</th>
+			<th>Brand</th>
+			<th>Review</th>
+		</tr>
+		<tr *ngFor ="let review of reviews">
+			<td *ngIf = "(id == review.grocery)">{{review.user}}</td>
+			<td *ngIf = "(id == review.grocery)">{{review.company}}</td>
+			<td *ngIf = "(id == review.grocery)">{{review.brand}}</td>
+			<td *ngIf = "(id == review.grocery)">{{review.review}}</td>
+		</tr>
+	</table>	
+</div>
+
+<div class = "col-sm-5">
+	<form (submit) = "onAddReview()">
+		<h2>Please give your review here.</h2>
+		<table align  = "center" class = "table table-stripped" >
+			<tr>
+				<td>Company</td>
+				<td><input class="form-control" type="text" [(ngModel)]="company" name="company"></td>
+			</tr>
+			<tr>
+				<td>Brand</td>
+				<td><input class="form-control" type="text" [(ngModel)]="brand" name="brand"></td>
+			</tr>
+			<tr>
+				<td>Review</td>
+				<td><textarea class="form-control" [(ngModel)]="review" rows = "4" name="review"></textarea></td>
+			</tr>
+		</table>
+		<button type="submit" class="btn btn-primary">Add Review</button>
+	</form>
+</div>
